@@ -1,15 +1,5 @@
-FROM ubuntu:latest
-
-EXPOSE 8000
-
+FROM golang:1.16-alpine
 WORKDIR /app
-
-# Connect to database
-ENV HOST=localhost PORT=5432
-
-# Database login
-ENV USER=root PASSWORD=root DBNAME=root
-
-COPY ./main main
-
-CMD [ "./main" ]
+COPY . .
+RUN go build -o main .
+CMD ["./main"]
